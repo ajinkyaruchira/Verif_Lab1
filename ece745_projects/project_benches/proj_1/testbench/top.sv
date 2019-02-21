@@ -1,6 +1,9 @@
 `timescale 1ns / 10ps
 
-package mypack;
+//`include "i2c_pkg.sv"
+
+import mypack::*;
+
 module top();
 
 parameter int WB_ADDR_WIDTH = 2;
@@ -29,7 +32,6 @@ bit we_moniter;
 //bit [I2C_DATA_WIDTH-1:0] test;
 bit [I2C_DATA_WIDTH-1:0] test [];
 bit [7:0] send_data;
-typedef enum bit {READ , WRITE} i2c_op_t;
 i2c_op_t test_op;
 
 // ****************************************************************************
@@ -232,4 +234,4 @@ i2c_bus (
 
 
 endmodule 
-endpackage;
+

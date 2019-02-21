@@ -1,6 +1,7 @@
-//'include "/afs/eos.ncsu.edu/lockers/workspace/ece/ece745/001/amjadhav/ece745_projects/project_benches/proj_1/testbenches/top.sv"
 
-import mypack::i2c_op_t; // add import to top.sv too
+//`include "i2c_pkg.sv"
+
+import mypack::*;
 
 interface i2c_if #(
       int I2C_ADDR_WIDTH = 7,                                
