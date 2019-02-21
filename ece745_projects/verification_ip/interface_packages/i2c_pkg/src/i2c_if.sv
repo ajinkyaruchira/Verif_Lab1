@@ -1,4 +1,4 @@
-'include "/afs/eos.ncsu.edu/lockers/workspace/ece/ece745/001/amjadhav/ece745_projects/project_benches/proj_1/testbenches/top.sv"
+//'include "/afs/eos.ncsu.edu/lockers/workspace/ece/ece745/001/amjadhav/ece745_projects/project_benches/proj_1/testbenches/top.sv"
 
 import mypack::i2c_op_t;
 
