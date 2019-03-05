@@ -1,0 +1,192 @@
+`timescale 1ns / 10ps
+interface i2c_if       #(
+      int ADDR_WIDTH = 8,                                
+      int DATA_WIDTH = 8                                
+      )
+(
+  // System signals
+  input wire scl,
+  inout wire sda
+  );
+
+import mypack::*;
+
+  bit sda_o = 1'b1;
+  bit prev_state;
+
+  assign sda = sda_o?'bz:'b0;
+  
+
+// ****************************************************************************                           
+  task wait_for_i2c_transfer(
+                   output i2c_op_t op,
+                   output bit [DATA_WIDTH-1:0]  write_data[]
+                   );  
+   	int j ;
+  	j=0;
+  	prev_state = 0;
+  	
+	while(1)
+	begin
+
+		if(prev_state==1)	j=0;
+	    write_data = new[j+1](write_data);
+		@(posedge scl);
+		@(sda or negedge scl);
+			
+	    if(!scl)                                        /* data bits */
+		begin : data_bits
+
+		    for(int i=8; i>0; i--)
+		    begin : for_i
+		       		write_data[j][i-1] = sda;
+		       		if(i>1)	@(posedge scl);
+		    end : for_i
+		            	
+		    @(posedge scl);
+		     	sda_o = 1'b0; 	/* Send ACK */
+		       
+		    @(negedge scl);
+		     	sda_o = 1'b1; 	/* Release SDA */
+		            	
+		    if(j==0)
+		       	begin : j_op
+
+					if(write_data[0][0] == 1) 
+	       		begin : op_r
+	      			op = READ;
+	       			return;
+		     	end : op_r	
+	    
+	    		else 
+	       		begin : wr
+	    			op = WRITE;
+				end : wr
+	    	end : j_op
+	    	
+	    	j++;
+	    	prev_state = 0;	
+
+		end : data_bits
+
+		else if (!sda) 	                                  /* start */
+		begin
+			prev_state = 1;	
+		end
+
+		else if (sda) 	                                 /* stop */
+		begin
+		  	prev_state = 0;
+		  	return;
+		end
+		 	
+	end
+
+  endtask        
+
+// ****************************************************************************              
+task provide_read_data(
+                 input bit [DATA_WIDTH-1:0] read_data[]
+                 );                                                  
+   
+
+    for (int i=0;i<read_data.size();i++)  // size 32
+    begin
+      
+      for(int j=DATA_WIDTH; j>0; j--)
+      begin
+    
+        @(negedge scl);
+        #1500ns
+        sda_o = read_data[i][j-1];    /* Transfer whole byte */
+
+      end
+
+      //@(negedge scl);   /* Open for ACK */
+      //sda_o = 1'b0;
+
+      @(posedge scl);   /* Open for ACK */
+      sda_o = 1'b1;
+    
+    end
+
+    // wait for event here
+    @(posedge scl); 
+
+    
+
+endtask        
+
+// ****************************************************************************              
+task monitor(output bit[ADDR_WIDTH-1:0]addr, output i2c_op_t op, output bit[DATA_WIDTH-1:0]data[]);
+    int j;
+    prev_state = 0;
+    j = 0;
+
+
+    @(negedge sda && scl==1);
+    
+    for(int i=8; i>0; i--)
+    begin : for_i
+    	@(posedge scl)
+    	addr[i-1]= sda;
+    end
+    
+		if(addr[0] == 1) 
+		     		begin : op_r
+		      			op = READ;
+			     	end : op_r	
+		    
+		    		else 
+		       		begin : wr
+		    			op = WRITE;
+		       		end : wr
+		  
+    @(posedge scl);	
+
+    while(1)
+    begin
+
+	    @(posedge scl);
+	    
+	   	@(sda or negedge scl);
+
+	   	if(!scl)                                          /* data bits */
+			begin : data_bits
+
+		    for(int i=8; i>0; i--)
+		    begin : for_i
+
+		       		data = new[j+1](data);
+		       		data[j][i-1] = sda;
+		      		if(i>1)	@(negedge scl);
+
+		    end : for_i
+		            	
+		    @(posedge scl);
+		     	/* ACK */
+		        
+		    j++;
+		  
+		end : data_bits
+
+		else if (!sda) 	  $display ("Start detected");                               /* start */
+		// begin 
+		// 	for(int i=8; i>0; i--)
+  //   		begin : for_i
+  //   			@(posedge scl)
+  //   			addr[i-1]= sda;
+  //   		end
+		// 	break;
+		// end
+
+		else if (sda) 	                                 /* stop */
+		begin
+			return;
+		end
+    end
+
+endtask 
+
+endinterface
+
