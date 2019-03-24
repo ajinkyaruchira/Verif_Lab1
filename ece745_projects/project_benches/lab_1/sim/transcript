@@ -1,0 +1,58 @@
+# //  ModelSim SE-64 10.6c Jul 25 2017Linux 3.10.0-957.5.1.el7.x86_64
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# vsim -i -classdebug -msgmode both -do "set NoQuitOnFinish 1; do wave.do" optimized_debug_top_tb 
+# Start time: 16:01:50 on Feb 16,2019
+# Loading sv_std.std
+# Loading work.top(fast)
+# Loading work.wb_if(fast)
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.iicmb_m_wb(str)#1
+# Loading work.wishbone(rtl)#1
+# Loading ieee.numeric_std(body)
+# Loading work.iicmb_pkg(body)
+# Loading work.regblock(rtl)#1
+# Loading work.iicmb_int_pkg(body)
+# Loading work.iicmb_m(str)#1
+# Loading work.mbyte(rtl)#1
+# Loading work.mbit(rtl)#1
+# Loading work.conditioner_mux(str)#1
+# Loading work.conditioner(str)#1
+# Loading work.filter(rtl)#1
+# Loading work.bus_state(rtl)#1
+# set NoQuitOnFinish 1
+# 1
+#  do wave.do
+run 2000000ns
+# @145ns Address : 00000000, Data : 00c0
+# @185ns Address : 00000001, Data : 0005
+# @225ns Address : 00000002, Data : 0006
+# @265ns Address : 00000002, Data : 0016
+# @295ns Address : 00000002, Data : 0004
+# @335ns Address : 00000002, Data : 0004
+# @5055ns Address : 00000002, Data : 0084
+# @5085ns Address : 00000001, Data : 0044
+# @5125ns Address : 00000002, Data : 0001
+# @5165ns Address : 00000002, Data : 0001
+# @95345ns Address : 00000002, Data : 0041
+# @95375ns Address : 00000001, Data : 0078
+# @95415ns Address : 00000002, Data : 0001
+# @95455ns Address : 00000002, Data : 0001
+# @185635ns Address : 00000002, Data : 0041
+# @185665ns Address : 00000002, Data : 0005
+# @185705ns Address : 00000002, Data : 0005
+# @194125ns Address : 00000002, Data : 0085
+# End time: 16:03:11 on Feb 16,2019, Elapsed time: 0:01:21
+# Errors: 0, Warnings: 0
