@@ -1,12 +1,20 @@
 interface wb_if       #(
+<<<<<<< HEAD
       int ADDR_WIDTH =2,                                
       int DATA_WIDTH = 8                               
+=======
+      int ADDR_WIDTH = 32,                                
+      int DATA_WIDTH = 16                                
+>>>>>>> 74aff847ab75d6d38daee8566fdc100df836cb16
       )
 (
   // System sigals
   input wire clk_i,
   input wire rst_i,
+<<<<<<< HEAD
   input wire irq_i,
+=======
+>>>>>>> 74aff847ab75d6d38daee8566fdc100df836cb16
   // Master signals
   output reg cyc_o,
   output reg stb_o,
@@ -27,6 +35,18 @@ interface wb_if       #(
   initial reset_bus();
 
 // ****************************************************************************              
+<<<<<<< HEAD
+=======
+   task reset_bus();
+        cyc_o <= 1'b0;
+        stb_o <= 1'b0;
+        we_o <= 1'b0;
+        adr_o <= 'b0;
+        dat_o <= 'b0;
+   endtask
+
+// ****************************************************************************              
+>>>>>>> 74aff847ab75d6d38daee8566fdc100df836cb16
   task master_write(
                    input bit [ADDR_WIDTH-1:0]  addr,
                    input bit [DATA_WIDTH-1:0]  data
@@ -90,6 +110,7 @@ endtask
           while (cyc_o) @(posedge clk_i);                                                  
      endtask 
 
+<<<<<<< HEAD
      // ****************************************************************************              
    task wait_for_reset();
        if (rst_i !== 0) @(negedge rst_i);
@@ -116,3 +137,6 @@ endtask
 
 
 endinterface
+=======
+endinterface 
+>>>>>>> 74aff847ab75d6d38daee8566fdc100df836cb16

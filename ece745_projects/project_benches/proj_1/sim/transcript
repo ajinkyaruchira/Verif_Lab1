@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # //  ModelSim SE-64 10.6c Jul 25 2017Linux 3.10.0-957.5.1.el7.x86_64
+=======
+# //  ModelSim SE-64 10.6c Jul 25 2017Linux 3.10.0-957.1.3.el7.x86_64
+>>>>>>> 74aff847ab75d6d38daee8566fdc100df836cb16
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
 # //  All Rights Reserved.
@@ -12,9 +16,16 @@
 # //  18 U.S.C. Section 1905.
 # //
 # vsim -i -classdebug -msgmode both -do "set NoQuitOnFinish 1; do wave.do" optimized_debug_top_tb 
+<<<<<<< HEAD
 # Start time: 15:41:27 on Mar 07,2019
 # Loading sv_std.std
 # Loading work.i2c_pkg(fast)
+=======
+# Start time: 17:03:48 on Mar 05,2019
+# Loading sv_std.std
+# Loading work.mypack(fast)
+# Loading work.top_sv_unit(fast)
+>>>>>>> 74aff847ab75d6d38daee8566fdc100df836cb16
 # Loading work.top(fast)
 # Loading work.wb_if(fast)
 # Loading work.i2c_if(fast)
@@ -37,6 +48,7 @@
 # set NoQuitOnFinish 1
 # 1
 #  do wave.do
+<<<<<<< HEAD
 run -a
 # start detected
 # address recorded : 45
@@ -77,4 +89,173 @@ run -a
 #    Time: 2993145 ns  Iteration: 1  Instance: /top
 # Break in NamedBeginStat test_flow at ../testbench/top.sv line 298
 # End time: 16:26:31 on Mar 07,2019, Elapsed time: 0:45:04
+=======
+add wave -position insertpoint  \
+sim:/top/scl
+add wave -position insertpoint  \
+sim:/top/sda
+add wave -position insertpoint  \
+sim:/top/i2c_bus/sda_o
+add wave -position insertpoint  \
+sim:/top/i2c_bus/monitor/data
+add wave -position insertpoint sim:/top/i2c_bus/monitor/*
+run -all
+# @135 data is   192
+# @175 data is     1
+# @215 data is     6
+# @265 data is    22
+# @295 data is     4
+# @5065 data is   132
+# @5095 data is    69
+# @5135 data is     1
+# Break in Task monitor at /afs/eos.ncsu.edu/lockers/workspace/ece/ece745/001/amjadhav/ece745_projects/project_benches/proj_1/sim/../../../verification_ip/interface_packages/i2c_pkg/src/i2c_if.sv line 150
+run -continue
+# @95365 data is    65
+# @95395 data is     2
+# Break in Task monitor at /afs/eos.ncsu.edu/lockers/workspace/ece/ece745/001/amjadhav/ece745_projects/project_benches/proj_1/sim/../../../verification_ip/interface_packages/i2c_pkg/src/i2c_if.sv line 150
+add wave -position insertpoint sim:/top/i2c_bus/monitor/*
+add wave  \
+sim:/top/i2c_bus/monitor/data
+run -continue
+# @185625 data is   130
+# @185655 data is   100
+# @185685 data is     2
+# Break in Task monitor at /afs/eos.ncsu.edu/lockers/workspace/ece/ece745/001/amjadhav/ece745_projects/project_benches/proj_1/sim/../../../verification_ip/interface_packages/i2c_pkg/src/i2c_if.sv line 150
+add watch  \
+sim:/top/i2c_bus/monitor/data
+run -continue
+# @275915 data is   130
+# @275945 data is   101
+# @275975 data is     2
+# Break in Task monitor at /afs/eos.ncsu.edu/lockers/workspace/ece/ece745/001/amjadhav/ece745_projects/project_benches/proj_1/sim/../../../verification_ip/interface_packages/i2c_pkg/src/i2c_if.sv line 150
+run -all
+# @366205 data is   130
+# @366235 data is   102
+# @366265 data is     2
+# Break in Task monitor at /afs/eos.ncsu.edu/lockers/workspace/ece/ece745/001/amjadhav/ece745_projects/project_benches/proj_1/sim/../../../verification_ip/interface_packages/i2c_pkg/src/i2c_if.sv line 150
+run -all
+# @456495 data is   130
+# @456525 data is   103
+# @456555 data is     2
+# @546785 data is   130
+# @546815 data is   104
+# @546845 data is     2
+# @637075 data is   130
+# @637105 data is   105
+# @637135 data is     2
+# @727365 data is   130
+# @727395 data is   106
+# @727425 data is     2
+# @817655 data is   130
+# @817685 data is   107
+# @817715 data is     2
+# @907945 data is   130
+# @907975 data is   108
+# @908005 data is     2
+# @998235 data is   130
+# @998265 data is   109
+# @998295 data is     2
+# @1088525 data is   130
+# @1088555 data is   110
+# @1088585 data is     2
+# @1178815 data is   130
+# @1178845 data is   111
+# @1178875 data is     2
+# @1269105 data is   130
+# @1269135 data is   112
+# @1269165 data is     2
+# @1359395 data is   130
+# @1359425 data is   113
+# @1359455 data is     2
+# @1449685 data is   130
+# @1449715 data is   114
+# @1449745 data is     2
+# @1539975 data is   130
+# @1540005 data is   115
+# @1540035 data is     2
+# @1630265 data is   130
+# @1630295 data is   116
+# @1630325 data is     2
+# @1720555 data is   130
+# @1720585 data is   117
+# @1720615 data is     2
+# @1810845 data is   130
+# @1810875 data is   118
+# @1810905 data is     2
+# @1901135 data is   130
+# @1901165 data is   119
+# @1901195 data is     2
+# @1991425 data is   130
+# @1991455 data is   120
+# @1991485 data is     2
+# @2081715 data is   130
+# @2081745 data is   121
+# @2081775 data is     2
+# @2172005 data is   130
+# @2172035 data is   122
+# @2172065 data is     2
+# @2262295 data is   130
+# @2262325 data is   123
+# @2262355 data is     2
+# @2352585 data is   130
+# @2352615 data is   124
+# @2352645 data is     2
+# @2442875 data is   130
+# @2442905 data is   125
+# @2442935 data is     2
+# @2533165 data is   130
+# @2533195 data is   126
+# @2533225 data is     2
+# @2623455 data is   130
+# @2623485 data is   127
+# @2623515 data is     2
+# @2713745 data is   130
+# @2713775 data is   128
+# @2713805 data is     2
+# @2804035 data is   130
+# @2804065 data is   129
+# @2804095 data is     2
+# @2894325 data is   130
+# @2894355 data is   130
+# @2894385 data is     3
+# @2984615 data is   131
+# @2984645 data is   131
+# @2984675 data is     5
+#  I2C_BUS READ Transfer: 45 64 
+#  I2C_BUS READ Transfer: 45 65 
+#  I2C_BUS READ Transfer: 45 66 
+#  I2C_BUS READ Transfer: 45 67 
+#  I2C_BUS READ Transfer: 45 68 
+#  I2C_BUS READ Transfer: 45 69 
+#  I2C_BUS READ Transfer: 45 6a 
+#  I2C_BUS READ Transfer: 45 6b 
+#  I2C_BUS READ Transfer: 45 6c 
+#  I2C_BUS READ Transfer: 45 6d 
+#  I2C_BUS READ Transfer: 45 6e 
+#  I2C_BUS READ Transfer: 45 6f 
+#  I2C_BUS READ Transfer: 45 70 
+#  I2C_BUS READ Transfer: 45 71 
+#  I2C_BUS READ Transfer: 45 72 
+#  I2C_BUS READ Transfer: 45 73 
+#  I2C_BUS READ Transfer: 45 74 
+#  I2C_BUS READ Transfer: 45 75 
+#  I2C_BUS READ Transfer: 45 76 
+#  I2C_BUS READ Transfer: 45 77 
+#  I2C_BUS READ Transfer: 45 78 
+#  I2C_BUS READ Transfer: 45 79 
+#  I2C_BUS READ Transfer: 45 7a 
+#  I2C_BUS READ Transfer: 45 7b 
+#  I2C_BUS READ Transfer: 45 7c 
+#  I2C_BUS READ Transfer: 45 7d 
+#  I2C_BUS READ Transfer: 45 7e 
+#  I2C_BUS READ Transfer: 45 7f 
+#  I2C_BUS READ Transfer: 45 80 
+#  I2C_BUS READ Transfer: 45 81 
+#  I2C_BUS READ Transfer: 45 82 
+#  I2C_BUS READ Transfer: 45 83 
+# ** Note: $stop    : ../testbench/top.sv(92)
+#    Time: 2993135 ns  Iteration: 1  Instance: /top
+# Break in NamedBeginStat test_flow at ../testbench/top.sv line 92
+# End time: 17:22:24 on Mar 05,2019, Elapsed time: 0:18:36
+>>>>>>> 74aff847ab75d6d38daee8566fdc100df836cb16
 # Errors: 0, Warnings: 0

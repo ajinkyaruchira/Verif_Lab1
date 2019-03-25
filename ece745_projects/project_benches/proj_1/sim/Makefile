@@ -23,6 +23,10 @@ comp_I2C_MB:
 
 comp_bench: comp_wb_pkg comp_i2c_pkg
 	vlog ../testbench/top.sv
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 74aff847ab75d6d38daee8566fdc100df836cb16
 
 optimize:
 	vopt +acc top -o optimized_debug_top_tb
